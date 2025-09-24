@@ -1,0 +1,22 @@
+services:
+  docs:
+    build: ./mkdocs
+    volumes:
+      - ./mkdocs:/docs
+      - ./notebooks:/docs/My_Notes/notebooks:ro 
+    ports:
+      - "127.0.0.1:11421:8000" #修改端口
+    restart: unless-stopped
+    command: serve -a 0.0.0.0:8000
+    environment:
+      - TZ=Asia/Taipei
+  jupyter:
+    image: jupyter/datascience-notebook:latest
+    restart: unless-stopped
+    volumes:
+      - ./:/home/jovyan/work
+    ports:
+      - "127.0.0.1:11422:8888"   # 本機11414 → 容器8888（Jupyter）
+    environment:
+      - TZ=Asia/Taipei
+    command: start-notebook.sh --ServerApp.token='' --ServerApp.password=''
