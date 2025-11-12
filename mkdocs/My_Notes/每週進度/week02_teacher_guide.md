@@ -29,7 +29,7 @@
 
 | 時段 Time | 活動 Activity | 教師行動 Teacher Moves | 學生輸出 Student Evidence |
 | --- | --- | --- | --- |
-| 0:00–0:10 | 暖身 Warm-up | 用學生 W01 清單帶學生圈選演算法，請對比 LeetCode 作業；做時間估計提問 Prompt student to circle algorithm from Week 1 list, connect to LeetCode homework, ask doubling question | 口頭敘述 + W02 學習單 warm-up 填答 Spoken recap + warm-up entries |
+| 0:00–0:10 | 暖身 Warm-up | 用學生 W01 清單帶學生圈選演算法，請對比 LeetCode 作業；做時間估計提問 Prompt student to circle algorithm from Week 1 list, connect to LeetCode homework, ask doubling question | 口頭敘述 + Week 2 學習單 warm-up 填答 Spoken recap + warm-up entries |
 | 0:10–0:30 | 活動一 Activity 1 | 引導撰寫 Table A，追問「為什麼覺得這個演算法熟悉？」Probe reasons for familiarity; show how to reference notes/screenshots | 完成演算法檔案表 + 個人結論 Completed Table A + takeaway |
 | 0:30–1:00 | 活動二 Activity 2 | 示範一次 8 筆資料的手動演算法，計程式；用顏色標記比較 vs 交換 Use color markers to distinguish comparisons vs swaps; coach Big-O translation | 表格記錄 + Big-O 填寫 Table entries + Big-O estimates |
 | 1:00–1:20 | 活動三 Activity 3 | 介紹 in-place vs extra space，拿兩張白紙演示「額外緩衝」Show memory diagrams on paper | 填寫空間比較表 & 口頭描述 Table D + verbal explanation |
@@ -106,7 +106,7 @@
 ---
 
 ## 評量與紀錄 Assessment & Documentation
-- **形成性評量工具 Formative Tools**：W02 學習單、教師觀察筆記、學生口頭說明 Worksheet responses, observation notes, verbal explanations.
+- **形成性評量工具 Formative Tools**：Week 2 學習單、教師觀察筆記、學生口頭說明 Worksheet responses, observation notes, verbal explanations.
 - **建議紀錄方式 Suggested Logging**：
   - 將關鍵對話或學生句子抄在教師筆記中 Capture key student statements.
   - 若學生同意，可拍下排序操作過程作為證據 Photograph sorting sequence with permission.
@@ -130,7 +130,7 @@
 
 ## 課後追蹤 After-class Follow-up
 - 建議學生在 LeetCode 嘗試 `Sort an Array` (Quick Sort/Heap Sort/ Merge Sort) 並記錄執行時間 Encourage trying LeetCode "Sort an Array" with runtime notes.
-- 發送簡短訊息提醒下次課前帶回 W02 學習單與任何疑問 Send reminder to bring worksheet and questions next session.
+- 發送簡短訊息提醒下次課前帶回 Week 2 學習單與任何疑問 Send reminder to bring worksheet and questions next session.
 - 教師可整理本課觀察，為第三週設計「複雜度測驗」或「APCS 題目解析」 Prepare observations for Week 3 planning.
 
 ---

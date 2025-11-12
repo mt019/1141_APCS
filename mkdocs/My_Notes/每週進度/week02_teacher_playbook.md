@@ -7,7 +7,7 @@
 ## 一、快速總覽 Quick Overview
 - **主題 Topic**：從排序進入時間與空間複雜度 From sorting to time/space complexity.
 - **時數 Duration**：120 分鐘（建議安排 105 分鐘必備 + 15 分鐘彈性）。Plan for 105 min core + 15 min buffer.
-- **學習單 Student Sheet**：`mkdocs/My_Notes/每週進度/W02.md`
+- **學習單 Student Sheet**：`mkdocs/My_Notes/每週進度/week02_student_worksheet.md`
 - **核心材料 Materials**：
   - 1–20 數字小紙片（至少每數字 1 張）Number slips 1–20.
   - 彩色筆或貼紙，用來記錄比較/交換 Colored markers or stickers.
