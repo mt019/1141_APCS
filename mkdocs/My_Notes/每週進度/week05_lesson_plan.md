@@ -24,7 +24,7 @@
 
 ## 資源與工具
 - 學生與教師電腦（Python 3 / VS Code / Jupyter 已安裝）。
-- Notebook：`notebooks/week05_boolean_counter_lab.ipynb`。
+- Notebook：`notebooks/10_weekly/week05_boolean_counter_lab.ipynb`。
 - 講義／學習單：本週布林語意表格、計數器追蹤表、密碼拆解步驟卡。
 - 白板或電子筆記工具，用於即時示範表格填寫。
 

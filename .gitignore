@@ -1,3 +1,19 @@
-/.DS_Store
-/_Material/命令/
+# macOS
+.DS_Store
+
+# Build outputs
+a.out
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Codex / tooling
+.codex_tmp/
+
+# MkDocs build
 /mkdocs/site
+
+# Local-only materials (keep out of git)
+/_Material/命令/
