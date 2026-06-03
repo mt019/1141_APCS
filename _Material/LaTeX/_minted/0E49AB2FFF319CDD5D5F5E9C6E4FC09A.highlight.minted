@@ -1,0 +1,19 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Change} \PYG{o}{=} \PYG{n}{Paid} \PYG{o}{\PYGZhy{}} \PYG{n}{Total}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{500 : }\PYG{l+s+si}{\PYGZob{}}\PYG{p}{(}\PYG{n}{Change}\PYG{o}{\PYGZhy{}}\PYG{n}{Change}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{500}\PYG{p}{)}\PYG{o}{/}\PYG{o}{/}\PYG{l+m+mi}{500}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{ pieces}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{Change} \PYG{o}{=} \PYG{n}{Change} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{500}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{100 : }\PYG{l+s+si}{\PYGZob{}}\PYG{p}{(}\PYG{n}{Change}\PYG{o}{\PYGZhy{}}\PYG{n}{Change}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{o}{/}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{ coins}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{Change} \PYG{o}{=} \PYG{n}{Change} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{100}
+\PYG{c+c1}{\PYGZsh{} A 區}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{50 : }\PYG{l+s+si}{\PYGZob{}}\PYG{p}{(}\PYG{n}{Change}\PYG{o}{\PYGZhy{}}\PYG{n}{Change}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{o}{/}\PYG{o}{/}\PYG{l+m+mi}{50}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{ coins}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{Change} \PYG{o}{=} \PYG{n}{Change} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{50}
+\PYG{c+c1}{\PYGZsh{} B 區}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{10 : }\PYG{l+s+si}{\PYGZob{}}\PYG{p}{(}\PYG{n}{Change}\PYG{o}{\PYGZhy{}}\PYG{n}{Change}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{o}{/}\PYG{o}{/}\PYG{l+m+mi}{10}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{ coins}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{Change} \PYG{o}{=} \PYG{n}{Change} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{10}
+\PYG{c+c1}{\PYGZsh{} C 區}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{5 : }\PYG{l+s+si}{\PYGZob{}}\PYG{p}{(}\PYG{n}{Change}\PYG{o}{\PYGZhy{}}\PYG{n}{Change}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{o}{/}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{ coins}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{Change} \PYG{o}{=} \PYG{n}{Change} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{5}
+\PYG{c+c1}{\PYGZsh{} D 區}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1 : }\PYG{l+s+si}{\PYGZob{}}\PYG{p}{(}\PYG{n}{Change}\PYG{o}{\PYGZhy{}}\PYG{n}{Change}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{o}{/}\PYG{l+m+mi}{1}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{ coins}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{Change} \PYG{o}{=} \PYG{n}{Change} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{1}
+\end{MintedVerbatim}

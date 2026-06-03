@@ -1,0 +1,12 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{if} \PYG{n}{s} \PYG{o}{\PYGZgt{}}\PYG{o}{=} \PYG{l+m+mi}{90}\PYG{p}{:}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{A}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{k}{elif} \PYG{n}{s} \PYG{o}{\PYGZgt{}}\PYG{o}{=} \PYG{l+m+mi}{80}\PYG{p}{:}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{k}{elif} \PYG{n}{s} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{60}\PYG{p}{:}      \PYG{c+c1}{\PYGZsh{} 錯：應寫 s \PYGZgt{}= 70 才能涵蓋 70\PYGZti{}79}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{D}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}    \PYG{c+c1}{\PYGZsh{} 60\PYGZti{}79 都跑進來印 D}
+\PYG{k}{elif} \PYG{n}{s} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{70}\PYG{p}{:}      \PYG{c+c1}{\PYGZsh{} 這行永遠執行不到！}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{k}{else}\PYG{p}{:}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{F}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{MintedVerbatim}

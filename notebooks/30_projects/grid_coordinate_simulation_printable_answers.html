@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>grid_coordinate_simulation_printable_answers</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/var/folders/kx/yl3w6mcd1g7767kzzplxnd380000gn/T/tmppnsm_u4r/print.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">grid_coordinate_simulation_printable_answers</h1>
+</header>
+<h1 id="grid-題型與座標模擬">Grid 題型與座標模擬</h1>
+<p>Status: in_use</p>
+<p>Prereq:
+<code>list</code>、<code>for</code>、<code>if</code>、函式、基本輸入輸出</p>
+<p>這份講義保留 grid 題最必要的語法、觀念與 APCS
+完整解法，特別對應中級題本：</p>
+<ul>
+<li>〈特殊位置〉：2D grid、曼哈頓距離、範圍加總</li>
+<li>〈蒐集寶石〉：座標模擬、方向狀態、右轉、牆壁與邊界</li>
+</ul>
+<h2 id="grid-是什麼">1. Grid 是什麼？</h2>
+<p>Grid 就是二維表格。APCS 題目常把地圖、矩陣、場地、棋盤寫成 grid。</p>
+<p>在 Python 中，grid 通常用 list of lists 表示：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> [</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">list</span>(<span class="st">&quot;S..#.&quot;</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">list</span>(<span class="st">&quot;.#..G&quot;</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">list</span>(<span class="st">&quot;...#.&quot;</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">list</span>(<span class="st">&quot;G....&quot;</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> grid:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;&quot;</span>.join(row))</span></code></pre></div>
+<pre class="text"><code>S..#.
+.#..G
+...#.
+G....</code></pre>
+<h2 id="row-column-座標">2. Row / Column / 座標</h2>
+<p>Grid 題常用 <code>(r, c)</code> 表示座標：</p>
+<ul>
+<li><code>r</code>：row，列，由上到下</li>
+<li><code>c</code>：column，欄，由左到右</li>
+<li>Python 索引從 0 開始</li>
+</ul>
+<p>取值方式是 <code>grid[r][c]</code>。</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grid[<span class="dv">0</span>][<span class="dv">0</span>])  <span class="co"># S</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grid[<span class="dv">1</span>][<span class="dv">4</span>])  <span class="co"># G</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;rows =&quot;</span>, <span class="bu">len</span>(grid))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;cols =&quot;</span>, <span class="bu">len</span>(grid[<span class="dv">0</span>]))</span></code></pre></div>
+<pre class="text"><code>S
+G
+rows = 4
+cols = 5</code></pre>
+<h2 id="走訪所有格子">3. 走訪所有格子</h2>
+<p>走訪 grid 最常用雙層迴圈：外層走列 <code>r</code>，內層走欄
+<code>c</code>。</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(grid)):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(grid[<span class="dv">0</span>])):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(r, c, grid[r][c])</span></code></pre></div>
+<pre class="text"><code>0 0 S
+0 1 .
+0 2 .
+0 3 #
+0 4 .
+1 0 .
+1 1 #
+1 2 .
+1 3 .
+1 4 G
+2 0 .
+2 1 .
+2 2 .
+2 3 #
+2 4 .
+3 0 G
+3 1 .
+3 2 .
+3 3 .
+3 4 .</code></pre>
+<h2 id="常用語法整理">4. 常用語法整理</h2>
+<h3 id="lists..."><code>list("S..#.")</code></h3>
+<p>把字串拆成字元 list。</p>
+<h3 id="joinrow"><code>"".join(row)</code></h3>
+<p>把字元 list 合回字串，適合印地圖。</p>
+<h3 id="tuple-unpacking">tuple unpacking</h3>
+<p><code>dr, dc = (0, 1)</code> 會把 tuple 裡兩個值分別放進
+<code>dr</code> 和 <code>dc</code>。</p>
+<h3 id="append..."><code>.append(...)</code></h3>
+<p>把答案、座標或路徑加到 list 後面。</p>
+<h3 id="row-for-row-in-grid"><code>[row[:] for row in grid]</code></h3>
+<p>複製整張 grid，避免模擬時改到原本資料。</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> <span class="bu">list</span>(<span class="st">&quot;S..#.&quot;</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(row)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;&quot;</span>.join(row))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>dr, dc <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dr, dc)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> []</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>path.append((<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>path.append((<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(path)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>grid_copy <span class="op">=</span> [row[:] <span class="cf">for</span> row <span class="kw">in</span> grid]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>grid_copy[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">=</span> <span class="st">&quot;.&quot;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;原本：&quot;</span>, grid[<span class="dv">0</span>][<span class="dv">0</span>])</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;複製：&quot;</span>, grid_copy[<span class="dv">0</span>][<span class="dv">0</span>])</span></code></pre></div>
+<pre class="text"><code>[&#39;S&#39;, &#39;.&#39;, &#39;.&#39;, &#39;#&#39;, &#39;.&#39;]
+S..#.
+0 1
+[(0, 0), (0, 1)]
+原本： S
+複製： .</code></pre>
+<h2 id="邊界檢查">5. 邊界檢查</h2>
+<p>只要座標可能移動，就一定要先檢查有沒有出界。</p>
+<p>正確順序：先檢查 <code>in_bounds</code>，再取
+<code>grid[r][c]</code>。</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> in_bounds(grid, r, c):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span> <span class="op">&lt;=</span> r <span class="op">&lt;</span> <span class="bu">len</span>(grid) <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> c <span class="op">&lt;</span> <span class="bu">len</span>(grid[<span class="dv">0</span>])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(in_bounds(grid, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(in_bounds(grid, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(in_bounds(grid, <span class="dv">0</span>, <span class="dv">99</span>))</span></code></pre></div>
+<pre class="text"><code>True
+False
+False</code></pre>
+<h2 id="上下左右移動">6. 上下左右移動</h2>
+<p>如果指令是 <code>U</code>, <code>D</code>, <code>L</code>,
+<code>R</code>，可以用 dictionary 建方向表。</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>DIRECTIONS_COMMAND <span class="op">=</span> {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;U&quot;</span>: (<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;D&quot;</span>: (<span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;L&quot;</span>: (<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;R&quot;</span>: (<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> next_position_by_command(r, c, command):</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    dr, dc <span class="op">=</span> DIRECTIONS_COMMAND[command]</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r <span class="op">+</span> dr, c <span class="op">+</span> dc</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(next_position_by_command(<span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;U&quot;</span>))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(next_position_by_command(<span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&quot;R&quot;</span>))</span></code></pre></div>
+<pre class="text"><code>(1, 3)
+(2, 4)</code></pre>
+<h2 id="曼哈頓距離">7. 曼哈頓距離</h2>
+<p>兩個格子 <code>(r, c)</code> 和 <code>(s, t)</code>
+的曼哈頓距離：</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>(r <span class="op">-</span> s) <span class="op">+</span> <span class="bu">abs</span>(c <span class="op">-</span> t)</span></code></pre></div>
+<p>常見錯誤是寫成
+<code>abs(r - s + c - t)</code>，這會讓正負差互相抵消。</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> distance(r, c, s, t):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">abs</span>(r <span class="op">-</span> s) <span class="op">+</span> <span class="bu">abs</span>(c <span class="op">-</span> t)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(distance(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(distance(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>))</span></code></pre></div>
+<pre class="text"><code>4
+2</code></pre>
+<h2 id="apcs特殊位置題型拆解">8. APCS〈特殊位置〉題型拆解</h2>
+<p>這題不是單純「會用 grid」就好，重點是把文字條件翻成枚舉範圍。</p>
+<p>對每個位置 <code>(i, j)</code>：</p>
+<ol type="1">
+<li>令 <code>x = mat[i][j]</code>。</li>
+<li>找出所有與 <code>(i, j)</code> 曼哈頓距離不超過 <code>x</code>
+的位置 <code>(s, t)</code>。</li>
+<li>把這些位置的數值加總成 <code>total</code>。</li>
+<li>如果 <code>total % 10 == x % 10</code>，或等價寫成
+<code>(total - x) % 10 == 0</code>，則 <code>(i, j)</code>
+是特殊位置。</li>
+</ol>
+<p>題目要求輸出 row-major 順序，也就是由上到下、由左到右。只要外層
+<code>for i in range(n)</code>、內層
+<code>for j in range(m)</code>，找到時依序
+<code>append</code>，輸出順序自然正確。</p>
+<h2 id="第一子題n-1-的一維情境">8-1. 第一子題：<code>n = 1</code>
+的一維情境</h2>
+<p>第一子題有 60 分，條件是 <code>n = 1</code>，也就是只有一列。</p>
+<p>例如：</p>
+<pre class="text"><code>+---+---+---+---+---+
+| 3 | 1 | 4 | 5 | 1 |
++---+---+---+---+---+
+  0   1   2   3   4</code></pre>
+<p>因為只有一列，所以每個位置只需要看左右範圍：</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, j <span class="op">-</span> x)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> <span class="bu">min</span>(m <span class="op">-</span> <span class="dv">1</span>, j <span class="op">+</span> x)</span></code></pre></div>
+<p>這一版可以先掌握第一子題，也能看出「距離不超過
+x」其實就是範圍限制。</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> solve_special_one_row(values):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(values)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    points <span class="op">=</span> []</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(m):</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> values[j]</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        left <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, j <span class="op">-</span> x)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        right <span class="op">=</span> <span class="bu">min</span>(m <span class="op">-</span> <span class="dv">1</span>, j <span class="op">+</span> x)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="bu">sum</span>(values[left:right <span class="op">+</span> <span class="dv">1</span>])</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (total <span class="op">-</span> x) <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>            points.append(j)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> [<span class="bu">str</span>(<span class="bu">len</span>(points))]</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> points:</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>        output.append(<span class="ss">f&quot;0 </span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>.join(output)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve_special_one_row([<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>]))</span></code></pre></div>
+<pre class="text"><code>2
+0 0
+0 2</code></pre>
+<h2 id="從一維推到二維為什麼要枚舉方框">8-2.
+從一維推到二維：為什麼要枚舉方框？</h2>
+<p>對中心 <code>(i, j)</code>、半徑 <code>x</code> 而言，如果某點
+<code>(s, t)</code> 的距離不超過 <code>x</code>，必定滿足：</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">-</span> x <span class="op">&lt;=</span> s <span class="op">&lt;=</span> i <span class="op">+</span> x</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>j <span class="op">-</span> x <span class="op">&lt;=</span> t <span class="op">&lt;=</span> j <span class="op">+</span> x</span></code></pre></div>
+<p>所以可以先枚舉這個方框：</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">-</span> x, i <span class="op">+</span> x <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(j <span class="op">-</span> x, j <span class="op">+</span> x <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        ...</span></code></pre></div>
+<p>但注意：在方框內不代表一定距離不超過
+<code>x</code>。方框角落可能太遠，所以還要補兩個檢查：</p>
+<ol type="1">
+<li><code>0 &lt;= s &lt; n and 0 &lt;= t &lt; m</code>：沒有出界。</li>
+<li><code>abs(i - s) + abs(j - t) &lt;= x</code>：真的在曼哈頓距離內。</li>
+</ol>
+<h2 id="官方範例二檢查-2-3">8-3. 官方範例二：檢查
+<code>(2, 3)</code></h2>
+<p>範例二矩陣：</p>
+<pre class="text"><code>1 3 4 1 3 1
+1 1 4 1 3 1
+1 1 3 2 5 3
+4 3 3 1 4 1
+5 2 1 1 1 1</code></pre>
+<p>題目說 <code>(2, 3)</code> 是特殊位置。因為
+<code>mat[2][3] = 2</code>，所以要加總距離不超過 2 的所有格子。</p>
+<p>下面列出實際被加總的座標、值與距離。</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>special_sample2_mat <span class="op">=</span> [</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>],</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>],</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>],</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>],</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>center_r, center_c <span class="op">=</span> <span class="dv">2</span>, <span class="dv">3</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> special_sample2_mat[center_r][center_c]</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>used <span class="op">=</span> []</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(center_r <span class="op">-</span> x, center_r <span class="op">+</span> x <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(center_c <span class="op">-</span> x, center_c <span class="op">+</span> x <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> s <span class="op">&lt;</span> <span class="bu">len</span>(special_sample2_mat) <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> t <span class="op">&lt;</span> <span class="bu">len</span>(special_sample2_mat[<span class="dv">0</span>]):</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>            dist <span class="op">=</span> <span class="bu">abs</span>(center_r <span class="op">-</span> s) <span class="op">+</span> <span class="bu">abs</span>(center_c <span class="op">-</span> t)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> dist <span class="op">&lt;=</span> x:</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>                value <span class="op">=</span> special_sample2_mat[s][t]</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>                used.append((s, t, value, dist))</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>                total <span class="op">+=</span> value</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;x =&quot;</span>, x)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;被加總的格子數 =&quot;</span>, <span class="bu">len</span>(used))</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> used:</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item)</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;total =&quot;</span>, total)</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;total % 10 =&quot;</span>, total <span class="op">%</span> <span class="dv">10</span>)</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;x % 10 =&quot;</span>, x <span class="op">%</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre class="text"><code>x = 2
+被加總的格子數 = 13
+(0, 3, 1, 2)
+(1, 2, 4, 2)
+(1, 3, 1, 1)
+(1, 4, 3, 2)
+(2, 1, 1, 2)
+(2, 2, 3, 1)
+(2, 3, 2, 0)
+(2, 4, 5, 1)
+(2, 5, 3, 2)
+(3, 2, 3, 2)
+(3, 3, 1, 1)
+(3, 4, 4, 2)
+(4, 3, 1, 2)
+total = 32
+total % 10 = 2
+x % 10 = 2</code></pre>
+<h2 id="完整解法方框枚舉版">8-4. 完整解法：方框枚舉版</h2>
+<p>這是最適合本題的 Python 寫法：夠直觀，也比掃整張 grid 更有效率。</p>
+<p>重點：</p>
+<ul>
+<li><code>area_sum_box(mat, r, c)</code>
+負責算某個中心的距離內總和。</li>
+<li><code>find_special_positions(mat)</code>
+負責走訪全部中心點並收集答案。</li>
+<li><code>solve_special_position(lines)</code>
+負責處理輸入輸出格式。</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> area_sum_box(mat, r, c):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(mat)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(mat[<span class="dv">0</span>])</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> mat[r][c]</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(r <span class="op">-</span> x, r <span class="op">+</span> x <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(c <span class="op">-</span> x, c <span class="op">+</span> x <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> s <span class="op">&lt;</span> n <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> t <span class="op">&lt;</span> m:</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="bu">abs</span>(r <span class="op">-</span> s) <span class="op">+</span> <span class="bu">abs</span>(c <span class="op">-</span> t) <span class="op">&lt;=</span> x:</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>                    total <span class="op">+=</span> mat[s][t]</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_special_positions(mat):</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    points <span class="op">=</span> []</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(mat)):</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(mat[<span class="dv">0</span>])):</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> mat[r][c]</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>            total <span class="op">=</span> area_sum_box(mat, r, c)</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (total <span class="op">-</span> x) <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>                points.append((r, c))</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> points</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> solve_special_position(lines):</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>    n, m <span class="op">=</span> <span class="bu">map</span>(<span class="bu">int</span>, lines[<span class="dv">0</span>].split())</span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>    mat <span class="op">=</span> [<span class="bu">list</span>(<span class="bu">map</span>(<span class="bu">int</span>, lines[i].split())) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>)]</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>    points <span class="op">=</span> find_special_positions(mat)</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> [<span class="bu">str</span>(<span class="bu">len</span>(points))]</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r, c <span class="kw">in</span> points:</span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>        output.append(<span class="ss">f&quot;</span><span class="sc">{</span>r<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>.join(output)</span></code></pre></div>
+<h2 id="官方範例驗證">8-5. 官方範例驗證</h2>
+<p>範例一是第一子題型態 <code>n = 1</code>，範例二是完整二維情境。</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>special_sample1 <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="st">1 5</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="st">3 1 4 5 1</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>.strip().splitlines()</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>special_sample2 <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="st">5 6</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="st">1 3 4 1 3 1</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="st">1 1 4 1 3 1</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="st">1 1 3 2 5 3</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="st">4 3 3 1 4 1</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="st">5 2 1 1 1 1</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>.strip().splitlines()</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve_special_position(special_sample1))</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;---&quot;</span>)</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve_special_position(special_sample2))</span></code></pre></div>
+<pre class="text"><code>2
+0 0
+0 2
+---
+4
+0 2
+1 3
+2 3
+3 3</code></pre>
+<h2 id="整合輸入輸出的程式碼">8-6. 整合輸入輸出的程式碼</h2>
+<p>前面用 <code>solve_special_position(lines)</code>
+方便測試；正式讀取資料時，可改成直接讀 <code>input()</code> 的寫法。</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 整合輸入輸出的寫法</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>n, m <span class="op">=</span> <span class="bu">map</span>(<span class="bu">int</span>, <span class="bu">input</span>().split())</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> []</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    mat.append([<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">input</span>().split()])</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>points <span class="op">=</span> []</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">range</span>(m):</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> mat[r][c]</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(r <span class="op">-</span> x, r <span class="op">+</span> x <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(c <span class="op">-</span> x, c <span class="op">+</span> x <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> s <span class="op">&lt;</span> n <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> t <span class="op">&lt;</span> m <span class="kw">and</span> <span class="bu">abs</span>(r <span class="op">-</span> s) <span class="op">+</span> <span class="bu">abs</span>(c <span class="op">-</span> t) <span class="op">&lt;=</span> x:</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>                    total <span class="op">+=</span> mat[s][t]</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (total <span class="op">-</span> x) <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>            points.append((r, c))</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(points))</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r, c <span class="kw">in</span> points:</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(r, c)</span></code></pre></div>
+<h2 id="方向狀態與右轉">9. 方向狀態與右轉</h2>
+<p>如果題目需要轉向，用整數表示方向很方便：</p>
+<ul>
+<li><code>0</code>：東</li>
+<li><code>1</code>：南</li>
+<li><code>2</code>：西</li>
+<li><code>3</code>：北</li>
+</ul>
+<p>右轉就是 <code>(direction + 1) % 4</code>。</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>DIRECTIONS_TURN <span class="op">=</span> [</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> turn_right(direction):</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (direction <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="dv">4</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(d, <span class="st">&quot;右轉後&quot;</span>, turn_right(d))</span></code></pre></div>
+<pre class="text"><code>0 右轉後 1
+1 右轉後 2
+2 右轉後 3
+3 右轉後 0</code></pre>
+<h2 id="apcs蒐集寶石完整解法">10. APCS〈蒐集寶石〉完整解法</h2>
+<p>這題是狀態模擬。狀態包含：</p>
+<ul>
+<li>位置 <code>(r, c)</code></li>
+<li>方向 <code>direction</code></li>
+<li>得分 <code>score</code></li>
+<li>已取得寶石數 <code>gem_count</code></li>
+<li>每格剩餘寶石數 <code>grid[r][c]</code></li>
+</ul>
+<p>注意：<code>0</code>
+不是牆壁，可以走進去；只是走到後下一回合停止。牆壁是
+<code>-1</code>。</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> next_position_by_direction(r, c, direction):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    dr, dc <span class="op">=</span> DIRECTIONS_TURN[direction]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r <span class="op">+</span> dr, c <span class="op">+</span> dc</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> can_move_forward(mat, r, c, direction):</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    nr, nc <span class="op">=</span> next_position_by_direction(r, c, direction)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> in_bounds(mat, nr, nc) <span class="kw">and</span> mat[nr][nc] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rotate_until_can_move(mat, r, c, direction):</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">not</span> can_move_forward(mat, r, c, direction):</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        direction <span class="op">=</span> turn_right(direction)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> direction</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_gems(mat, K, start_r, start_c):</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    r, c <span class="op">=</span> start_r, start_c</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    direction <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    gem_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mat[r][c] <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>        score <span class="op">+=</span> mat[r][c]</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>        mat[r][c] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>        gem_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> score <span class="op">%</span> K <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>            direction <span class="op">=</span> turn_right(direction)</span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>        direction <span class="op">=</span> rotate_until_can_move(mat, r, c, direction)</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>        r, c <span class="op">=</span> next_position_by_direction(r, c, direction)</span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gem_count</span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> solve_gems(lines):</span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a>    M, N, K, r, c <span class="op">=</span> <span class="bu">map</span>(<span class="bu">int</span>, lines[<span class="dv">0</span>].split())</span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>    mat <span class="op">=</span> [<span class="bu">list</span>(<span class="bu">map</span>(<span class="bu">int</span>, lines[i].split())) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, M <span class="op">+</span> <span class="dv">1</span>)]</span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">str</span>(simulate_gems(mat, K, r, c))</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gems_sample1 <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="st">1 7 3 0 4</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="st">1 -1 2 1 2 1 0</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>.strip().splitlines()</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>gems_sample2 <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="st">4 5 4 2 1</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="st">2 0 1 1 1</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="st">2 -1 0 2 -1</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="st">0 3 2 3 0</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="st">-1 1 -1 3 0</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>.strip().splitlines()</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve_gems(gems_sample1))</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve_gems(gems_sample2))</span></code></pre></div>
+<pre class="text"><code>5
+8</code></pre>
+<h2 id="fix-it-題與解答">11. Fix-it 題與解答</h2>
+<p>這一段整理 grid 題最常見的錯誤。每題先看錯誤寫法，再看修正版。</p>
+<h3 id="fix-it-1欄數寫成列數">Fix-it 1：欄數寫成列數</h3>
+<p>錯誤原因：<code>len(grid)</code> 是列數，不是欄數。當 grid
+不是正方形時，內層迴圈會漏算或超出範圍。</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 錯誤寫法</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_all_cells_bug(grid):</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(grid)):</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(grid)):  <span class="co"># 錯：這裡應該是欄數</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>            count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 修正版</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_all_cells_fixed(grid):</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(grid)):</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(grid[<span class="dv">0</span>])):</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>            count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>rect_grid <span class="op">=</span> [</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>],</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_all_cells_fixed(rect_grid))  <span class="co"># 2 * 3 = 6</span></span></code></pre></div>
+<h3 id="fix-it-2還沒檢查邊界就讀取-grid">Fix-it 2：還沒檢查邊界就讀取
+grid</h3>
+<p>錯誤原因：如果 <code>nr, nc</code> 已經出界，先讀
+<code>grid[nr][nc]</code>
+會直接發生錯誤。正確順序是先檢查範圍，再讀格子內容。</p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 錯誤寫法</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> can_move_bug(grid, r, c, dr, dc):</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    nr <span class="op">=</span> r <span class="op">+</span> dr</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> c <span class="op">+</span> dc</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> grid[nr][nc] <span class="op">==</span> <span class="st">&quot;#&quot;</span>:  <span class="co"># 錯：可能已經出界</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> in_bounds(grid, nr, nc):</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 修正版</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> can_move_fixed(grid, r, c, dr, dc):</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>    nr <span class="op">=</span> r <span class="op">+</span> dr</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> c <span class="op">+</span> dc</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> in_bounds(grid, nr, nc):</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> grid[nr][nc] <span class="op">==</span> <span class="st">&quot;#&quot;</span>:</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(can_move_fixed(grid, <span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>))  <span class="co"># 往上出界</span></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(can_move_fixed(grid, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>))   <span class="co"># 往右可走</span></span></code></pre></div>
+<h3 id="fix-it-3曼哈頓距離寫錯">Fix-it 3：曼哈頓距離寫錯</h3>
+<p>錯誤原因：<code>abs(r - s + c - t)</code>
+會讓列差與欄差互相抵消。曼哈頓距離必須分開取絕對值再相加。</p>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 錯誤寫法</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> distance_bug(r, c, s, t):</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">abs</span>(r <span class="op">-</span> s <span class="op">+</span> c <span class="op">-</span> t)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 修正版</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> distance_fixed(r, c, s, t):</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">abs</span>(r <span class="op">-</span> s) <span class="op">+</span> <span class="bu">abs</span>(c <span class="op">-</span> t)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(distance_bug(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))    <span class="co"># 錯誤結果：0</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(distance_fixed(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))  <span class="co"># 正確結果：4</span></span></code></pre></div>
+<h3 id="fix-it-4把-0-當成牆壁">Fix-it 4：把 <code>0</code> 當成牆壁</h3>
+<p>在〈蒐集寶石〉中，<code>-1</code> 才是牆壁。<code>0</code>
+是可以走進去的格子，只是走到後會停止。</p>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 錯誤寫法</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> can_move_forward_bug(mat, r, c, direction):</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    nr, nc <span class="op">=</span> next_position_by_direction(r, c, direction)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> in_bounds(mat, nr, nc) <span class="kw">and</span> mat[nr][nc] <span class="op">&gt;</span> <span class="dv">0</span>  <span class="co"># 錯：0 也可以走</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 修正版</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> can_move_forward_fixed(mat, r, c, direction):</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    nr, nc <span class="op">=</span> next_position_by_direction(r, c, direction)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> in_bounds(mat, nr, nc) <span class="kw">and</span> mat[nr][nc] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>one_row <span class="op">=</span> [[<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>]]</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(can_move_forward_fixed(one_row, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>))  <span class="co"># 往右到 0，可以走</span></span></code></pre></div>
+<h3 id="fix-it-5收寶石與移動順序顛倒">Fix-it
+5：收寶石與移動順序顛倒</h3>
+<p>在〈蒐集寶石〉中，每一回合要先處理目前格子，再決定方向與移動。不能先移動到下一格才收寶石。</p>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 錯誤觀念：先移動，再處理新格子</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># r, c = next_position_by_direction(r, c, direction)</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># score += mat[r][c]</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 正確順序：先處理目前格子</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> one_step_collect(mat, r, c, score, gem_count):</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    score <span class="op">+=</span> mat[r][c]</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    mat[r][c] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    gem_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> score, gem_count</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>demo <span class="op">=</span> [[<span class="dv">2</span>]]</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>score, gem_count <span class="op">=</span> one_step_collect(demo, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(score)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gem_count)</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(demo[<span class="dv">0</span>][<span class="dv">0</span>])</span></code></pre></div>
+<h2 id="grid-題解題-sop">12. Grid 題解題 SOP</h2>
+<ol type="1">
+<li>確認 grid 大小：<code>rows</code>, <code>cols</code></li>
+<li>確認座標定義：<code>(r, c)</code> 是列、欄</li>
+<li>確認格子值的意義：牆壁、空地、數字、目標</li>
+<li>寫 <code>in_bounds</code></li>
+<li>寫方向表與下一格函式</li>
+<li>寫 <code>can_move</code></li>
+<li>寫單一步驟</li>
+<li>寫整體迴圈或雙層掃描</li>
+<li>用官方範例驗證</li>
+<li>最後整理輸入輸出</li>
+</ol>
+</body>
+</html>

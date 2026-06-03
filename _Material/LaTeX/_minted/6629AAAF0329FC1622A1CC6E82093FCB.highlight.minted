@@ -1,0 +1,16 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} 迴圈版（題目 9：填入 while 迴圈內容）}
+\PYG{n}{i}\PYG{p}{,} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{76}\PYG{p}{,} \PYG{l+m+mi}{48}
+\PYG{k}{while} \PYG{p}{(}\PYG{n}{i} \PYG{o}{\PYGZpc{}} \PYG{n}{j}\PYG{p}{)} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{:}
+    \PYG{n}{k} \PYG{o}{=} \PYG{n}{i} \PYG{o}{\PYGZpc{}} \PYG{n}{j}       \PYG{c+c1}{\PYGZsh{} 保存余數}
+    \PYG{n}{i} \PYG{o}{=} \PYG{n}{j}
+    \PYG{n}{j} \PYG{o}{=} \PYG{n}{k}           \PYG{c+c1}{\PYGZsh{} (A) 正確答案}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{j}\PYG{p}{)}            \PYG{c+c1}{\PYGZsh{} 印出 GCD = 4}
+
+\PYG{c+c1}{\PYGZsh{} 遞迴版（題目 23：填入兩個 return）}
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{GCD}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{r} \PYG{o}{=} \PYG{n}{a} \PYG{o}{\PYGZpc{}} \PYG{n}{b}
+    \PYG{k}{if} \PYG{n}{r} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{b}          \PYG{c+c1}{\PYGZsh{} 填 b}
+    \PYG{k}{return} \PYG{n}{GCD}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{r}\PYG{p}{)}      \PYG{c+c1}{\PYGZsh{} 填 GCD(b, r)，答案 (B)}
+\end{MintedVerbatim}

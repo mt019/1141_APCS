@@ -1,0 +1,715 @@
+% ============================================================
+%  程式識讀 完整題庫（30 題）
+%  依據《程式識讀題目範例 Python 題本》原文整理
+% ============================================================
+
+% 知識點標籤
+\newcommand{\qskill}[1]{%
+  \par\vspace{2pt}
+  {\small\color{notebar}\textit{知識點：#1}}%
+  \vspace{2pt}%
+}
+
+% 四個選項：每個都獨立一行，間距緊湊
+\newcommand{\qchoices}[4]{%
+  \vspace{3pt}
+  \begin{enumerate}[label=(\Alph*), itemsep=1pt, topsep=1pt,
+                    leftmargin=2.2em, parsep=0pt]
+    \item #1
+    \item #2
+    \item #3
+    \item #4
+  \end{enumerate}
+}
+
+% -------- 題目 1 --------
+\begin{qbox}{1}
+給定右側函式 \texttt{f()}，當執行 \texttt{f(10)} 時，最終回傳結果為何？
+
+\begin{minted}{python}
+def f(i):
+    if i > 0:
+        if (i // 2) % 2 == 0:
+            return f(i - 2) * i
+        return f(i - 2) * (-i)
+    else:
+        return 1
+\end{minted}
+
+\qchoices{1}{3840}{-3840}{執行時導致無窮迴圈，不會停止執行}
+\qskill{遞迴追蹤、整數除法 (//)、取餘 (\%)}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 2 --------
+\begin{qbox}{2}
+給定右側程式，若已知輸出的結果為 \texttt{[1][2][3][5][4][6]}，程式中的 \texttt{(?)} 應為下列何者？
+
+\begin{minted}{python}
+for i in range(5):
+    j = 0
+    while   (?):
+        print(f'[{i + j}]', end = '')
+        j = j + 2
+\end{minted}
+
+\qchoices{j<i}{j>i}{j<=i}{j>=i}
+\qskill{while 條件填空、f-string 輸出}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 3 --------
+\begin{qbox}{3}
+給定右側函式 \texttt{f()}，已知 \texttt{f(14)}、\texttt{f(10)}、\texttt{f(6)} 分別回傳 25、18、10，函式中的 \texttt{(?)} 應為下列何者？
+
+\begin{minted}{python}
+def f(n):
+    if n < 2:
+        return n
+    else:
+        return n + f(  (?)  )
+\end{minted}
+
+\qchoices{(n+1)//2}{n//2}{(n-1)//2}{(n//2)+1}
+\qskill{遞迴規律推導、整數除法}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 4 --------
+\begin{qbox}{4}
+給定右側程式片段，當程式執行完後，輸出結果為何？
+
+\begin{minted}{python}
+Q = [0] * 200
+val = 0
+count = 0
+head = tail = 0
+for i in range(1, 31):
+    Q[tail] = i
+    tail = tail + 1
+while tail > head + 1:
+    val = Q[head]
+    head = head + 1
+    count = count + 1
+    if count == 3:
+        count = 0
+        Q[tail] = val
+        tail = tail + 1
+print(Q[head])
+\end{minted}
+
+\qchoices{9}{18}{27}{30}
+\qskill{串列模擬、head/tail 指標（佇列概念）}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 5 --------
+\begin{qbox}{5}
+右側程式正確的輸出應該如下：
+
+\begin{center}\ttfamily\small
+\phantom{****}*\\
+\phantom{**}*\ *\ *\\
+*\ *\ *\ *\ *\\
+*\ *\ *\ *\ *\ *\ *\\
+*\ *\ *\ *\ *\ *\ *\ *\ *
+\end{center}
+
+在不修改右側程式之第 4 行及第 5 行程式碼的前提下，最少需修改幾行程式碼以得到正確輸出？
+
+\begin{minted}[linenos=true]{python}
+k = 4
+m = 1
+for i in range(5):
+    print(' ' * k, end = '')
+    print('*' * m)
+    k = k - 1
+    m = m + 1
+\end{minted}
+
+\qchoices{1}{2}{3}{4}
+\qskill{迴圈結構、字串重複 (* 運算子)}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 6 --------
+\begin{qbox}{6}
+給定一整數列表 \texttt{a[0]、a[1]、...、a[99]} 且 \texttt{a[k]=3k+1}，以 \texttt{value=100} 呼叫以下兩函式，假設函式 \texttt{f1} 及 \texttt{f2} 之 \texttt{while} 迴圈主體分別執行 n1 與 n2 次（也就是說計算 \texttt{if} 敘述執行次數，不包含 \texttt{elif} 敘述），請問 n1 與 n2 之值為何？
+
+\begin{minted}{python}
+def f1(a, value):          def f2(a, value):
+    r_value = -1               r_value = -1
+    i = 0                      low = 0
+    while i < 100:             high = 99
+        n1 += 1                while low <= high:
+        if a[i] == value:          n2 += 1
+            r_value = i            mid = (low + high) // 2
+            break                  if a[mid] == value:
+        i = i + 1                      r_value = mid
+    return r_value                     break
+                                   elif a[mid] < value:
+                                       low = mid + 1
+                                   else:
+                                       high = mid - 1
+                               return r_value
+\end{minted}
+
+\qchoices{n1=33, n2=4}{n1=33, n2=5}{n1=34, n2=4}{n1=34, n2=5}
+\qskill{線性搜尋 vs 二分搜尋、迴圈次數計算}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 7 --------
+\begin{qbox}{7}
+一個費式數列定義第一個數為 0，第二個數為 1，之後的每個數都等於前兩個數相加，如下所示：0、1、1、2、3、5、8、13、21、34、55、89……右列的程式用以計算並印出第 N 個（N≥2）費式數列的數值，請問 \texttt{(a)} 與 \texttt{(b)} 兩個空格的敘述（statement）應該為何？
+
+\begin{minted}{python}
+a = 0
+b = 1
+for i in range(2, N + 1):
+    temp = b
+    (a)
+    a = temp
+print( (b) )
+\end{minted}
+
+\begin{enumerate}[label=(\Alph*), itemsep=3pt, topsep=1pt, leftmargin=2.2em, parsep=0pt]
+  \item \texttt{(a) f[i] = f[i-1]+f[i-2]} \quad \texttt{(b) f[N]}
+  \item \texttt{(a) a = a+b} \quad \texttt{(b) a}
+  \item \texttt{(a) b = a+b} \quad \texttt{(b) a}
+  \item \texttt{(a) f[i] = f[i-1]+f[i-2]} \quad \texttt{(b) f[i]}
+\end{enumerate}
+\qskill{費式數列、暫存變數（temp）、迴圈實作}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 8 --------
+\begin{qbox}{8}
+給定右側函式 \texttt{f1()} 及 \texttt{f2()}。\texttt{f1(1)} 運算過程中，以下敘述何者為錯？
+
+\begin{minted}{python}
+def f1(m):                def f2(n):
+    if m > 3:                 if n > 3:
+        print(m)                  print(n)
+        return                    return
+    else:                     else:
+        print(m)                  print(n)
+        f2(m + 2)                 f1(n - 1)
+        print(m)                  print(n)
+\end{minted}
+
+\qchoices{印出的數字最大的是 4}{\texttt{f1} 一共被呼叫二次}{\texttt{f2} 一共被呼叫三次}{數字 2 被印出兩次}
+\qskill{互相遞迴、執行流程追蹤、呼叫次數}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 9 --------
+\begin{qbox}{9}
+右側程式片段擬以輾轉除法求 \texttt{i} 與 \texttt{j} 的最大公因數。請問 \texttt{while} 迴圈內容何者正確？（注意：\texttt{(low + high) // 2} 只取整數部分）
+
+\begin{minted}{python}
+i = 76
+j = 48
+while (i % j) != 0:
+    ________
+    ________
+    ________
+print(j)
+\end{minted}
+
+\begin{enumerate}[label=(\Alph*), itemsep=4pt, topsep=1pt, leftmargin=2.2em, parsep=0pt]
+  \item \texttt{k = i \% j} \\ \texttt{i = j} \\ \texttt{j = k}
+  \item \texttt{i = j} \\ \texttt{j = k} \\ \texttt{k = i \% j}
+  \item \texttt{i = j} \\ \texttt{j = i \% k} \\ \texttt{k = i}
+  \item \texttt{k = i} \\ \texttt{i = j} \\ \texttt{j = i \% k}
+\end{enumerate}
+\qskill{輾轉除法（GCD）、while 迴圈填空}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 10 --------
+\begin{qbox}{10}
+右側程式執行過後所輸出數值為何？
+
+\begin{minted}{python}
+count = 10
+if count > 0:
+    count = 11
+if count > 10:
+    count = 12
+    if count % 3 == 4:
+        count = 1
+    else:
+        count = 0
+elif count > 11:
+    count = 13
+else:
+    count = 14
+if count:
+    count = 15
+else:
+    count = 16
+print(count)
+\end{minted}
+
+\qchoices{11}{13}{15}{16}
+\qskill{獨立 if 追蹤、if/elif 執行順序、布林值判斷}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 11 --------
+\begin{qbox}{11}
+右側為一個計算 n 階乘的函式，請問該如何修改才會得到正確的結果？
+
+\begin{minted}[linenos=true]{python}
+def fun(n):
+    fac = 1
+    if n >= 0:
+        fac = n * fun(n - 1)
+    return fac
+\end{minted}
+
+\begin{enumerate}[label=(\Alph*), itemsep=1pt, topsep=1pt, leftmargin=2.2em, parsep=0pt]
+  \item 第 2 行，改為 \texttt{fac = n}
+  \item 第 3 行，改為 \texttt{if n > 0:}
+  \item 第 4 行，改為 \texttt{fac = n * fun(n+1)}
+  \item 第 4 行，改為 \texttt{fac = fac * fun(n-1)}
+\end{enumerate}
+\qskill{遞迴終止條件（base case）、階乘}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 12 --------
+\begin{qbox}{12}
+右側 \texttt{f()} 函式 \texttt{(a)}、\texttt{(b)}、\texttt{(c)} 處需分別填入哪些數字，方能使得 \texttt{f(4)} 輸出 \texttt{2468} 的結果？
+
+\begin{minted}{python}
+def f(n):
+    p = 0
+    i = n
+    while i >= (a):
+        p = 10 - (b) * i
+        print(p, end='')
+        i = i - (c)
+\end{minted}
+
+\qchoices{1, 2, 1}{0, 1, 2}{0, 2, 1}{1, 1, 1}
+\qskill{while 條件與迴圈體填空、輸出預測}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 13 --------
+\begin{qbox}{13}
+右側 \texttt{g(4)} 函式呼叫執行後，回傳值為何？
+
+\begin{minted}{python}
+def f(n):
+    if n > 3:
+        return 1
+    elif n == 2:
+        return 3 + f(n + 1)
+    else:
+        return 1 + f(n + 1)
+
+def g(n):
+    j = 0
+    for i in range(1, n):
+        j = j + f(i)
+    return j
+\end{minted}
+
+\qchoices{6}{11}{13}{14}
+\qskill{遞迴 + for 迴圈混合追蹤、累加}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 14 --------
+\begin{qbox}{14}
+右側 \texttt{Mystery()} 函式 \texttt{else} 部分運算式應為何，才能使得 \texttt{Mystery(9)} 的回傳值為 34。
+
+\begin{minted}{python}
+def Mystery(x):
+    if x <= 1:
+        return x
+    else:
+        return ________
+\end{minted}
+
+\qchoices{x + Mystery(x-1)}{x * Mystery(x-1)}{Mystery(x-2) + Mystery(x+2)}{Mystery(x-2) + Mystery(x-1)}
+\qskill{遞迴終止條件推導、逆向推算}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 15 --------
+\begin{qbox}{15}
+右側程式碼執行後，輸出結果為何？
+
+\begin{minted}{python}
+a = [1, 3, 5, 7, 9, 8, 6, 4, 2]
+n = 9
+for i in range(n):
+    a[i], a[n-i-1] = a[n-i-1], a[i]
+for i in range(n//2 + 1):
+    print(a[i], a[n-i-1], end=' ')
+\end{minted}
+
+\qchoices{2468975319}{1357924689}{1234567899}{2468513799}
+\qskill{串列同時賦值、反轉、索引計算}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 16 --------
+\begin{qbox}{16}
+右側函式以 \texttt{F(7)} 呼叫後回傳值為 12，則 \texttt{<condition>} 應為何？
+
+\begin{minted}{python}
+def F(a):
+    if <condition>:
+        return 1
+    else:
+        return F(a-2) + F(a-3)
+\end{minted}
+
+\qchoices{a < 3}{a < 2}{a < 1}{a < 0}
+\qskill{遞迴終止條件填空、逆向推算}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 17 --------
+\begin{qbox}{17}
+右側是依據分數 \texttt{s} 評定等第的程式碼片段，正確的等第公式應為：90\textasciitilde100 判為 A 等、80\textasciitilde89 判為 B 等、70\textasciitilde79 判為 C 等、60\textasciitilde69 判為 D 等、0\textasciitilde59 判為 F 等。這段程式碼在處理 0\textasciitilde100 的分數時，有幾個分數的等第是錯的？
+
+\begin{minted}{python}
+if s >= 90:
+    print('A')
+elif s >= 80:
+    print('B')
+elif s > 60:
+    print('D')
+elif s > 70:
+    print('C')
+else:
+    print('F')
+\end{minted}
+
+\qchoices{20}{11}{2}{10}
+\qskill{if/elif 條件順序、邊界值（>  vs  >=）、錯誤計數}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 18 --------
+\begin{qbox}{18}
+右側程式片段執行後，\texttt{count} 的值為何？
+
+\begin{minted}{python}
+maze = [[1, 1, 1, 1, 1],
+        [1, 0, 1, 0, 1],
+        [1, 1, 0, 0, 1],
+        [1, 0, 0, 1, 1],
+        [1, 1, 1, 1, 1]]
+count = 0
+for i in range(1, 4):
+    for j in range(1, 4):
+        dir = [[-1,0], [0,1], [1,0], [0,-1]]
+        for d in range(4):
+            if maze[i+dir[d][0]][j+dir[d][1]] == 1:
+                count = count + 1
+\end{minted}
+
+\qchoices{36}{20}{12}{3}
+\qskill{二維串列、巢狀迴圈、方向向量}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 19 --------
+\begin{qbox}{19}
+右側程式片段中執行後若要印出下列圖案，\texttt{(a)} 的條件判斷式該如何設定？
+
+\begin{center}\ttfamily\small
+* * * * * *\\
+* * * *\\
+* *
+\end{center}
+
+\begin{minted}{python}
+for i in range(4):
+    for j in range(i):
+        print(' ', end='')
+    for k in range(6-2*i, (a), -1):
+        print('*', end='')
+    print('')
+\end{minted}
+
+\qchoices{2}{1}{0}{-1}
+\qskill{range 參數填空、倒三角圖形}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 20 --------
+\begin{qbox}{20}
+下列程式碼是自動計算找零程式的一部分，程式碼中三個主要變數分別為 \texttt{Total}（購買總額）、\texttt{Paid}（實際支付金額）、\texttt{Change}（找零金額）。但是此程式片段有冗餘的程式碼，也就是移除該段程式碼之後不會影響程式的功能。請找出冗餘程式碼的區塊。
+
+\begin{minted}{python}
+Change = Paid - Total
+print(f'500 : {(Change-Change%500)//500} pieces')
+Change = Change % 500
+print(f'100 : {(Change-Change%100)//100} coins')
+Change = Change % 100
+# A 區
+print(f'50 : {(Change-Change%50)//50} coins')
+Change = Change % 50
+# B 區
+print(f'10 : {(Change-Change%10)//10} coins')
+Change = Change % 10
+# C 區
+print(f'5 : {(Change-Change%5)//5} coins')
+Change = Change % 5
+# D 區
+print(f'1 : {(Change-Change%1)//1} coins')
+Change = Change % 1
+\end{minted}
+
+\qchoices{冗餘程式碼在 A 區}{冗餘程式碼在 B 區}{冗餘程式碼在 C 區}{冗餘程式碼在 D 區}
+\qskill{冗餘程式碼識別（\% 1 的性質）}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 21 --------
+\begin{qbox}{21}
+右側 \texttt{G()} 為遞迴函式，\texttt{G(3, 7)} 執行後回傳值為何？
+
+\begin{minted}{python}
+def G(a, x):
+    if x == 0:
+        return 1
+    else:
+        return a * G(a, x - 1)
+\end{minted}
+
+\qchoices{128}{2187}{6561}{1024}
+\qskill{遞迴幂次、G(a, x) = a\textsuperscript{x}}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 22 --------
+\begin{qbox}{22}
+給定一個 1×8 的列表 \texttt{A}，\texttt{A = [0, 2, 4, 6, 8, 10, 12, 14]}。右側函式 \texttt{Search(x)} 真正目的是找到 \texttt{A} 之中大於 \texttt{x} 的最小值。然而，這個函式有誤。請問下列哪個函式呼叫可以測出函式有誤？
+
+\begin{minted}{python}
+A = [0, 2, 4, 6, 8, 10, 12, 14]
+def Search(x):
+    high = 7
+    low = 0
+    while high > low:
+        mid = (high + low) // 2
+        if A[mid] <= x:
+            low = mid + 1
+        else:
+            high = mid
+    return A[high]
+\end{minted}
+
+\qchoices{Search(-1)}{Search(0)}{Search(10)}{Search(16)}
+\qskill{二分搜尋邏輯、邊界測試（錯誤觸發）}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 23 --------
+\begin{qbox}{23}
+右側函式兩個回傳式分別該如何撰寫，才能正確計算並回傳參數 \texttt{a}、\texttt{b} 之最大公因數（Greatest Common Divisor）？
+
+\begin{minted}{python}
+def GCD(a, b):
+    r = a % b
+    if r == 0:
+        return ____
+    return ____
+\end{minted}
+
+\qchoices{a,\ \ GCD(b,r)}{b,\ \ GCD(b,r)}{a,\ \ GCD(a,r)}{b,\ \ GCD(a,r)}
+\qskill{GCD 遞迴填空、輾轉除法}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 24 --------
+\begin{qbox}{24}
+若 \texttt{A} 是一個可儲存 n 筆整數的列表，且資料儲存於 \texttt{A[0]}$\sim$\texttt{A[n-1]}。經過右側程式碼運算後，以下何者敘述不一定正確？
+
+\begin{minted}{python}
+A = [...]
+p = q = A[0]
+for i in range(1, n):
+    if A[i] > p:
+        p = A[i]
+    if A[i] < q:
+        q = A[i]
+\end{minted}
+
+\qchoices{p 是 A 列表資料中的最大值}{q 是 A 列表資料中的最小值}{q < p}{A[0] $\leq$ p}
+\qskill{最大最小值追蹤、「不一定正確」邏輯陷阱}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 25 --------
+\begin{qbox}{25}
+右側 \texttt{F()} 函式執行時，若輸入依序為整數 0, 1, 2, 3, 4, 5, 6, 7, 8, 9，請問 \texttt{X} 列表的元素值依序為何？
+
+\begin{minted}{python}
+def F():
+    X = [0] * 10
+    for i in range(10):
+        X[(i+2)%10] = int(input())
+\end{minted}
+
+\qchoices{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}{2, 0, 2, 0, 2, 0, 2, 0, 2, 0}{9, 0, 1, 2, 3, 4, 5, 6, 7, 8}{8, 9, 0, 1, 2, 3, 4, 5, 6, 7}
+\qskill{串列索引偏移 ((i+2)\%10)、模運算}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 26 --------
+\begin{qbox}{26}
+右側程式片段無法正確列印 20 次的 \texttt{"Hi!"}，請問下列哪一個修改方式仍無法正確列印 20 次的 \texttt{"Hi!"}？
+
+\begin{minted}{python}
+for i in range(0, 101, 5):
+    print('Hi!')
+\end{minted}
+
+\begin{enumerate}[label=(\Alph*), itemsep=1pt, topsep=1pt, leftmargin=2.2em, parsep=0pt]
+  \item 將 \texttt{range(0,101,5)} 改為 \texttt{range(0,20,1)}
+  \item 將 \texttt{range(0,101,5)} 改為 \texttt{range(5,101,5)}
+  \item 將 \texttt{range(0,101,5)} 改為 \texttt{range(0,100,5)}
+  \item 將 \texttt{range(0,101,5)} 改為 \texttt{range(5,100,5)}
+\end{enumerate}
+\qskill{range 元素數量、off-by-one}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 27 --------
+\begin{qbox}{27}
+給定右側函式 \texttt{F()}，執行 \texttt{F()} 時哪一行程式碼永遠不會被執行到？
+
+\begin{minted}{python}
+def F(a):
+    while a < 10:
+        a = a + 5
+    if a < 12:
+        a = a + 2
+    if a < 11:
+        a = 5
+\end{minted}
+
+\qchoices{a = a + 5}{a = a + 2}{a = 5}{每一行都執行得到}
+\qskill{while 後變數範圍、dead code 分析}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 28 --------
+\begin{qbox}{28}
+給定右側函式 \texttt{F()}，\texttt{F()} 執行完所回傳的 \texttt{x} 值為何？
+
+\begin{minted}{python}
+def F(n):
+    x = 0
+    for i in range(1, n+1):
+        for j in range(i, n+1):
+            k = 1
+            while k <= n:
+                x = x + 1
+                k = k * 2
+    return x
+\end{minted}
+
+\begin{enumerate}[label=(\Alph*), itemsep=2pt, topsep=1pt, leftmargin=2.2em, parsep=0pt]
+  \item $n(n+1)\sqrt{\lfloor\log_2 n\rfloor}$
+  \item $n^2(n+1)/2$
+  \item $n(n+1)(\lfloor\log_2 n\rfloor + 1)/2$
+  \item $n(n+1)/2$
+\end{enumerate}
+\qskill{三層巢狀迴圈、複雜度（log 因子）}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 29 --------
+\begin{qbox}{29}
+右側程式擬找出列表 \texttt{A} 中的最大值（M）和最小值（N）。不過，這段程式碼有誤，請問 \texttt{A} 初始值如何設定就可以測出程式有誤？
+
+\begin{minted}{python}
+M, N, s = -1, 101, 3
+A = [80, 90, 100]
+for i in range(s):
+    if A[i] > M:
+        M = A[i]
+    elif A[i] < N:
+        N = A[i]
+print(f'M = {M}, N = {N}')
+\end{minted}
+
+\qchoices{\text{[90, 80, 100]}}{\text{[80, 90, 100]}}{\text{[100, 90, 80]}}{\text{[90, 100, 80]}}
+\qskill{elif 邏輯漏洞、最大最小值、錯誤測資設計}
+\end{qbox}
+
+\medskip
+
+% -------- 題目 30 --------
+\begin{qbox}{30}
+經過運算後，右側程式的輸出為何？
+
+\begin{minted}{python}
+a = [0] * 101
+b = [i for i in range(101)]
+for i in range(1, 101):
+    a[i] = b[i] + a[i - 1]
+print(a[50] - a[30])
+\end{minted}
+
+\qchoices{1275}{20}{1000}{810}
+\qskill{list comprehension、前綴和（prefix sum）}
+\end{qbox}
+
+\bigskip
+
+% -------- 答案速查表 --------
+\begin{center}
+\small
+\begin{tabular}{ccccccccccc}
+\toprule
+題號 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+答案 & C & A & B & B & A & D & C & C & A & D \\
+\midrule
+題號 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 \\
+答案 & B & A & C & D & C & D & B & B & C & D \\
+\midrule
+題號 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 \\
+答案 & B & D & B & C & D & D & C & C & B & D \\
+\bottomrule
+\end{tabular}
+\end{center}

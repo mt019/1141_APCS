@@ -1,0 +1,7 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{GCD}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{r} \PYG{o}{=} \PYG{n}{a} \PYG{o}{\PYGZpc{}} \PYG{n}{b}
+    \PYG{k}{if} \PYG{n}{r} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{\PYGZus{}\PYGZus{}\PYGZus{}\PYGZus{}}
+    \PYG{k}{return} \PYG{n}{\PYGZus{}\PYGZus{}\PYGZus{}\PYGZus{}}
+\end{MintedVerbatim}

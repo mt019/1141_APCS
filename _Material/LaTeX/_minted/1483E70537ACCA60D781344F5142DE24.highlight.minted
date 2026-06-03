@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{4}
+\PYG{n}{m} \PYG{o}{=} \PYG{l+m+mi}{1}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ }\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{*} \PYG{n}{k}\PYG{p}{,} \PYG{n}{end} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{*}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{*} \PYG{n}{m}\PYG{p}{)}
+    \PYG{n}{k} \PYG{o}{=} \PYG{n}{k} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}
+    \PYG{n}{m} \PYG{o}{=} \PYG{n}{m} \PYG{o}{+} \PYG{l+m+mi}{1}
+\end{MintedVerbatim}

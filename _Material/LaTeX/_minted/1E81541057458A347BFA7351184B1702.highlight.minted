@@ -1,0 +1,15 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{f}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{if} \PYG{n}{n} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{3}\PYG{p}{:}
+        \PYG{k}{return} \PYG{l+m+mi}{1}
+    \PYG{k}{elif} \PYG{n}{n} \PYG{o}{==} \PYG{l+m+mi}{2}\PYG{p}{:}
+        \PYG{k}{return} \PYG{l+m+mi}{3} \PYG{o}{+} \PYG{n}{f}\PYG{p}{(}\PYG{n}{n} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{k}{return} \PYG{l+m+mi}{1} \PYG{o}{+} \PYG{n}{f}\PYG{p}{(}\PYG{n}{n} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{g}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{j} \PYG{o}{=} \PYG{n}{j} \PYG{o}{+} \PYG{n}{f}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{j}
+\end{MintedVerbatim}

@@ -1,0 +1,7 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{linear\PYGZus{}search}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{value}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{a}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}        \PYG{c+c1}{\PYGZsh{} 逐一比較}
+        \PYG{k}{if} \PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{n}{value}\PYG{p}{:}
+            \PYG{k}{return} \PYG{n}{i}
+    \PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}
+\end{MintedVerbatim}

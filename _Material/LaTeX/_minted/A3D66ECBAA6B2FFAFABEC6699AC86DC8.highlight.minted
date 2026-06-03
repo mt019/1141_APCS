@@ -1,0 +1,8 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{factorial}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{if} \PYG{n}{n} \PYG{o}{\PYGZlt{}}\PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{:}                    \PYG{c+c1}{\PYGZsh{} 終止條件}
+        \PYG{k}{return} \PYG{l+m+mi}{1}
+    \PYG{k}{return} \PYG{n}{n} \PYG{o}{*} \PYG{n}{factorial}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} 縮減：n 每次減 1}
+
+\PYG{c+c1}{\PYGZsh{} factorial(5) = 5*4*3*2*1 = 120}
+\end{MintedVerbatim}

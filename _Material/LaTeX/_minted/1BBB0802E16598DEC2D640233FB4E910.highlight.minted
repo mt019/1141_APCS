@@ -1,0 +1,15 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} 遞迴版}
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{fib}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{if} \PYG{n}{n} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{2}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{n}
+    \PYG{k}{return} \PYG{n}{fib}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{+} \PYG{n}{fib}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} 迴圈版（題目 7 的結構）}
+\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{N}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{temp} \PYG{o}{=} \PYG{n}{b}
+    \PYG{n}{b} \PYG{o}{=} \PYG{n}{a} \PYG{o}{+} \PYG{n}{b}    \PYG{c+c1}{\PYGZsh{} (a) 填 b = a+b}
+    \PYG{n}{a} \PYG{o}{=} \PYG{n}{temp}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{a}\PYG{p}{)}         \PYG{c+c1}{\PYGZsh{} (b) 填 a}
+\end{MintedVerbatim}

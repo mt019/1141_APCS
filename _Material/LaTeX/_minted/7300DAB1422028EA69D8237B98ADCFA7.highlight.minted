@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{F}\PYG{p}{(}\PYG{n}{a}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{while} \PYG{n}{a} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{10}\PYG{p}{:}
+        \PYG{n}{a} \PYG{o}{=} \PYG{n}{a} \PYG{o}{+} \PYG{l+m+mi}{5}
+    \PYG{c+c1}{\PYGZsh{} while 結束後：a 只可能是 10（0+5+5）或 15、20...}
+    \PYG{k}{if} \PYG{n}{a} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{12}\PYG{p}{:}
+        \PYG{n}{a} \PYG{o}{=} \PYG{n}{a} \PYG{o}{+} \PYG{l+m+mi}{2}    \PYG{c+c1}{\PYGZsh{} 若 a=10 → a 變 12}
+    \PYG{k}{if} \PYG{n}{a} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{11}\PYG{p}{:}
+        \PYG{n}{a} \PYG{o}{=} \PYG{l+m+mi}{5}        \PYG{c+c1}{\PYGZsh{} a 只可能是 12, 15, 20...，永遠 \PYGZgt{}= 11，這行執行不到}
+\end{MintedVerbatim}

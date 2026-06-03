@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{X} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*} \PYG{l+m+mi}{10}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{X}\PYG{p}{[}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{10}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}   \PYG{c+c1}{\PYGZsh{} 輸入 0,1,...,9}
+
+\PYG{c+c1}{\PYGZsh{} i=0 → X[2]=0；i=1 → X[3]=1；...；i=7 → X[9]=7}
+\PYG{c+c1}{\PYGZsh{} i=8 → X[0]=8；i=9 → X[1]=9}
+\PYG{c+c1}{\PYGZsh{} 結果：X = [8, 9, 0, 1, 2, 3, 4, 5, 6, 7]，答案 (D)}
+\end{MintedVerbatim}

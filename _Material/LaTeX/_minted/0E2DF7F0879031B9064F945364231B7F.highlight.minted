@@ -1,0 +1,18 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{Q} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*} \PYG{l+m+mi}{200}
+\PYG{n}{val} \PYG{o}{=} \PYG{l+m+mi}{0}
+\PYG{n}{count} \PYG{o}{=} \PYG{l+m+mi}{0}
+\PYG{n}{head} \PYG{o}{=} \PYG{n}{tail} \PYG{o}{=} \PYG{l+m+mi}{0}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{31}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{Q}\PYG{p}{[}\PYG{n}{tail}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}
+    \PYG{n}{tail} \PYG{o}{=} \PYG{n}{tail} \PYG{o}{+} \PYG{l+m+mi}{1}
+\PYG{k}{while} \PYG{n}{tail} \PYG{o}{\PYGZgt{}} \PYG{n}{head} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{:}
+    \PYG{n}{val} \PYG{o}{=} \PYG{n}{Q}\PYG{p}{[}\PYG{n}{head}\PYG{p}{]}
+    \PYG{n}{head} \PYG{o}{=} \PYG{n}{head} \PYG{o}{+} \PYG{l+m+mi}{1}
+    \PYG{n}{count} \PYG{o}{=} \PYG{n}{count} \PYG{o}{+} \PYG{l+m+mi}{1}
+    \PYG{k}{if} \PYG{n}{count} \PYG{o}{==} \PYG{l+m+mi}{3}\PYG{p}{:}
+        \PYG{n}{count} \PYG{o}{=} \PYG{l+m+mi}{0}
+        \PYG{n}{Q}\PYG{p}{[}\PYG{n}{tail}\PYG{p}{]} \PYG{o}{=} \PYG{n}{val}
+        \PYG{n}{tail} \PYG{o}{=} \PYG{n}{tail} \PYG{o}{+} \PYG{l+m+mi}{1}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{Q}\PYG{p}{[}\PYG{n}{head}\PYG{p}{]}\PYG{p}{)}
+\end{MintedVerbatim}

@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{G}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{if} \PYG{n}{x} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+        \PYG{k}{return} \PYG{l+m+mi}{1}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{a} \PYG{o}{*} \PYG{n}{G}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} G(a, x) = a\PYGZca{}x}
+\PYG{c+c1}{\PYGZsh{} G(3, 7) = 3\PYGZca{}7 = 2187，答案 (B)}
+\end{MintedVerbatim}

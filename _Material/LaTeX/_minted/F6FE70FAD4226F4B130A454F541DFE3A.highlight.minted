@@ -1,0 +1,8 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+if 條件A:
+    \PYGZsh{} 執行 A
+elif 條件B:
+    \PYGZsh{} 執行 B（A 不成立才判斷）
+else:
+    \PYGZsh{} A、B 都不成立
+\end{MintedVerbatim}

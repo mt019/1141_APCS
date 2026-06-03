@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{add}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{return} \PYG{n}{a} \PYG{o}{+} \PYG{n}{b}        \PYG{c+c1}{\PYGZsh{} 遇到 return 立刻結束函式}
+
+\PYG{n}{result} \PYG{o}{=} \PYG{n}{add}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}      \PYG{c+c1}{\PYGZsh{} result = 8}
+\end{MintedVerbatim}
